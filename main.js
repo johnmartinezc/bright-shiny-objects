@@ -59,44 +59,19 @@ console.log(fixCar())
   console.log(addGrades())
 
 
-// function getDataType(car, dataType)
-// {
-//     car = {
-//         make: 'Ford',
-//         model: 'Mustang',
-//         year: 1969,
-//         needsMaintenance: true
-//     } 
+function getDataType(datatype,car)
+{
 
-//     getDataType(car, 'make') = 'string'
-//     car['model']= 'Mustang'
-//     car['year']= 1969
-//     car['needsMaintenance']= true
-    // car.make =  typeof "ford"
-    // car.model = typeof "Mustang"
-    // car.year = typeof 1969
-    // car.needsMaintenance = typeof true
-    // return car
-// }
+    let type = car
+    type = typeof datatype[car]
+    
+    return type
+}
 
-// console.log(getDataType())
-// console.log(getDataType(typeof "Mustang",))
-// console.log(getDataType(typeof 1969,))
-// console.log(getDataType(typeof true,))
+console.log(getDataType)
 
 
-// const todo = [{ 
-//     title: 'Get gas', 
-//     isComplete: false },
-// { 
-//     title: 'Buy bread', 
-//     isComplete: true  
-// }
-// ]
-// const newTodo = [{
-//     title: 'Call mom', 
-//     isComplete: false
-// }];
+
 
 
 function addTodo(todo, newTodo){
@@ -158,34 +133,50 @@ const reportCard = {
     lowestGrade: 70,
     highestGrade: 96,
     averageGrade: 82,
-    grades: [70, 95, 80]
+    grades: [70, 96, 80]
 };
 
-updateReportCard1(reportCard, 62) =
+const updateReportCard1 = 
 {
     lowestGrade: 62,
     highestGrade: 96,
     averageGrade: 77,
-    grades: [70, 95, 80, 62]
+    grades: [70, 96, 80, 62]
 }
 
- updateReportCard2(reportCard, one) 
+const updateReportCard2 =
 {
-    lowestGrade =  70,
-    highestGrade = 100,
-    averageGrade = 86.5,
-    grades = [70, 95, 80, 100]
+    lowestGrade:  70,
+    highestGrade: 100,
+    averageGrade: 86.5,
+    grades: [70, 96, 80, 100]
 }
 
 
 function updateReportCard(reportCard, updateReport){
-    
+    let sum = 0
     reportCard.lowestGrade = updateReportCard1.lowestGrade
+    reportCard.grades = reportCard.grades.concat(updateReportCard1.lowestGrade)
+    for(let i in updateReportCard1.grades){
+        sum += updateReportCard1.grades[i]
 
-return reportCard
+    }
+    let cnt = updateReportCard1.grades.length
+    updateReportCard1.averageGrade = sum / cnt
+    
+    reportCard.highestGrade = updateReportCard2.highestGrade
+    reportCard.grades = reportCard.grades.concat(updateReportCard2.highestGrade)
+    
+    for(let i in reportCard.grades){
+        sum += reportCard.grades[i]    
+    }
+    let numbercnt = reportCard.grades.length
+    reportCard.averageGrade = sum / numbercnt
+
+return updateReportCard1
 }
 
-console.log(updateReportCard)
+console.log(updateReportCard(reportCard))
 
 
 
@@ -197,6 +188,9 @@ console.log(updateReportCard)
 // ┌─────────────────────────────────────────────────────────────────────────┐
 // │ Code used for testing. Do not modify!                                   │                         
 // │                                                                         │
+
+
+
 const isDef = (arg) => arg === 'function';
 const pass = () => undefined;
 // │                                                                         │
