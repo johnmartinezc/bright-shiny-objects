@@ -129,6 +129,36 @@ return playlist
 
 console.log(addSong())
 
+
+
+
+function updateReportCard(report, newGrade){
+    report.grades.push(newGrade)
+    let hG = report.grades[0]
+    let lG = report.grades[0]
+    let sum = 0
+
+    for(let i = 0; i < report.grades.length;i++){
+        sum = sum + report.grades[i]
+        if(report.grades[i] < report.grades[i+1] && report.grades[i] < lG){
+            lG = report.grades[i]
+        }else if(report.grades[i] > report.grades[i+1] && report.grades[i+1] < lG){
+            lG = report.grades[i+1]
+        }else if(report.grades[i] > report.grades[i+1] && report.grades[i] > hG){
+            hG = report.grades[i]
+        }else if (report.grades[i] < report.grades[i+1] && report.grades[i+1] > hG){
+            hG = report.grades[i+1]}
+    }
+    let avg = sum/(report.grades.length)
+    avg = Number((Math.round(avg *2)/2).toFixed(1))
+
+    report.lowestGrade = lG
+    report.highestGrade = hG
+    report.averageGrade = avg
+
+    return report
+}
+
 const reportCard = {
     lowestGrade: 70,
     highestGrade: 96,
@@ -136,54 +166,7 @@ const reportCard = {
     grades: [70, 96, 80]
 };
 
-const updateReportCard1 = 
-{
-    lowestGrade: 62,
-    highestGrade: 96,
-    averageGrade: 77,
-    grades: [70, 96, 80, 62]
-}
-
-const updateReportCard2 =
-{
-    lowestGrade:  70,
-    highestGrade: 100,
-    averageGrade: 86.5,
-    grades: [70, 96, 80, 100]
-}
-
-
-function updateReportCard(reportCard, updateReport){
-    let sum = 0
-    reportCard.lowestGrade = updateReportCard1.lowestGrade
-    reportCard.grades = reportCard.grades.concat(updateReportCard1.lowestGrade)
-    for(let i in updateReportCard1.grades){
-        sum += updateReportCard1.grades[i]
-
-    }
-    let cnt = updateReportCard1.grades.length
-    updateReportCard1.averageGrade = sum / cnt
-    
-    reportCard.highestGrade = updateReportCard2.highestGrade
-    reportCard.grades = reportCard.grades.concat(updateReportCard2.highestGrade)
-    
-    for(let i in reportCard.grades){
-        sum += reportCard.grades[i]    
-    }
-    let numbercnt = reportCard.grades.length
-    reportCard.averageGrade = sum / numbercnt
-
-return updateReportCard1
-}
-
-console.log(updateReportCard(reportCard))
-
-
-
-
-
-
-
+console.log(updateReportCard(reportCard, 100))
 
 // ┌─────────────────────────────────────────────────────────────────────────┐
 // │ Code used for testing. Do not modify!                                   │                         
